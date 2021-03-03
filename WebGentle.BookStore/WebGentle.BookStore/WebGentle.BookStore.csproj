@@ -11,12 +11,12 @@
 
   <ItemGroup>
     <Folder Include="MyStaticFiles\" />
-    <Folder Include="Views\Shared\" />
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="wwwroot\images\Covid.jpg" />
+    <None Include="wwwroot\images\Noimage.png" />
   </ItemGroup>
 
 </Project>
