@@ -30,7 +30,7 @@ namespace WebGentle.BookStore.Repository
                  new BookModel() { Id = 3, Title = "Java", Author = "Tajul" , Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=847},
                  new BookModel() { Id = 4, Title = "Php", Author = "Jashim" , Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=544},
                  new BookModel() { Id = 5, Title = "Core", Author = "Nitish" , Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=966},
-                  new BookModel() { Id = 5, Title = "Azure DevOps", Author = "Avijit" , Description="This is a Very good book of Azure DevOps", Category="Programming",Language="English",TotalPages=1025},
+                  new BookModel() { Id = 6, Title = "Azure DevOps", Author = "Avijit" , Description="This is a Very good book of Azure DevOps", Category="Programming",Language="English",TotalPages=1025},
             };
 
        

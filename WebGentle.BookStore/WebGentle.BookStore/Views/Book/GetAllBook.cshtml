@@ -1,4 +1,6 @@
-﻿@using WebGentle.BookStore.Models
+﻿@{ 
+    ViewData["Title"] = "All Books";
+}
 @model IEnumerable<BookModel>
 
 
@@ -16,7 +18,7 @@
                         <p class="card-text">@book.Description</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="/Book/Getbook/@book.Id" class="btn btn-sm btn-outline-secondary" >View Details</a>
+                                <a href="/Book/Getbook/@book.Id" class="btn btn-sm btn-outline-secondary">View Details</a>
                             </div>
                             <small class="text-muted">@book.Author</small>
                         </div>
@@ -25,6 +27,6 @@
             </div>
         }
 
-    </div> 
+    </div>
 </div>
 
