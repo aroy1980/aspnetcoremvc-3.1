@@ -12,7 +12,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/">
-                    <img src="~/images/logo.png" alt="" width="30" height="24">
+                    <img src="~/images/logo.png" alt="" width="30" height="24" asp-append-version="true">
                     Book Store
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,16 +27,19 @@
                     </ul>
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link" href="/">Home</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/home/about">About</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="About">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/home/ContactUs">Contact Us</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="ContactUs">Contact Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Book/GetAllBook">All Books</a>
+                            <a class="nav-link" asp-controller="Book" asp-action="GetAllBook">All Books</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-protocol="http" asp-host="google.com">Google</a>
                         </li>
 
                     </ul>
