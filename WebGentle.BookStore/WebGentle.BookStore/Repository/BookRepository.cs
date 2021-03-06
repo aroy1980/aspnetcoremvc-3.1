@@ -2,12 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebGentle.BookStore.Data;
 using WebGentle.BookStore.Models;
 
 namespace WebGentle.BookStore.Repository
 {
     public class BookRepository
     {
+        private readonly BookStoreContext _context;
+
+        public BookRepository(BookStoreContext context)
+        {
+            _context = context;
+        }
+        public int AddNewBook(BookModel model)
+        {
+            var newBook = new Books
+            {
+                Author = model.Author,
+                Description = model.Description,
+               // Category = model.Category,
+                 CreatedOn=DateTime.UtcNow,
+                   Title=model.Title,
+                  //  Language=model.Language,
+                     TotalPages = model.TotalPages,
+                     UpdatedOn=DateTime.UtcNow
+                
+            };
+            _context.Books.Add(newBook);
+            _context.SaveChanges();
+            return newBook.Id;
+        }
         public List<BookModel> GetAllBooks()
         {
             return DataSource();
