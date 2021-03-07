@@ -17,14 +17,14 @@ namespace WebGentle.BookStore.Controllers
             _bookRepository = bookRepository;
 
         }
-        public ViewResult GetAllBook()
+        public async Task<ViewResult> GetAllBook()
         {
-            var data = _bookRepository.GetAllBooks();
+            var data =await _bookRepository.GetAllBooks();
             return View(data);
         }
-        public ViewResult GetBook(int id)
+        public async Task<ViewResult> GetBook(int id)
         {
-            var data = _bookRepository.GetBookByID(id);
+            var data = await _bookRepository.GetBookByID(id);
             return View(data);
 
         }
@@ -40,14 +40,18 @@ namespace WebGentle.BookStore.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddNewBook(BookModel bookModel)
+        public async Task<IActionResult> AddNewBook(BookModel bookModel)
         {
-            int id=_bookRepository.AddNewBook(bookModel);
-            if(id>0)
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(AddNewBook),new { isSuccess=true ,bookId=id});
+                int id = await _bookRepository.AddNewBook(bookModel);
+                if (id > 0)
+                {
+                    return RedirectToAction(nameof(AddNewBook), new { isSuccess = true, bookId = id });
+                }
+              
             }
-            return View(); 
+            return View();
         }
     }
 }

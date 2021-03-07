@@ -28,6 +28,7 @@ namespace WebGentle.BookStore
 #if DEBUG
             services.AddRazorPages().AddRazorRuntimeCompilation();
 #endif
+            //services.AddScoped<BookRepository, BookRepository>();
             services.AddScoped<BookRepository, BookRepository>();
         }
 
