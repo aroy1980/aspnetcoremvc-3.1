@@ -35,9 +35,12 @@ namespace WebGentle.BookStore.Controllers
         }
         public ViewResult AddNewBook(bool isSuccess = false, int bookId=0)
         {
+            var book = new BookModel()
+            {Language="Hindi"};
+
             ViewBag.IsSuccess = isSuccess;
             ViewBag.BookId = bookId;
-            return View();
+            return View(book);
         }
         [HttpPost]
         public async Task<IActionResult> AddNewBook(BookModel bookModel)

@@ -27,6 +27,7 @@
     <None Include="wwwroot\images\Book\Book1.jpg" />
     <None Include="wwwroot\images\Book\Book2.jpg" />
     <None Include="wwwroot\images\Book\Book3.jpg" />
+    <None Include="wwwroot\images\logo.jpg" />
     <None Include="wwwroot\images\Covid.jpg" />
     <None Include="wwwroot\images\Noimage.png" />
   </ItemGroup>

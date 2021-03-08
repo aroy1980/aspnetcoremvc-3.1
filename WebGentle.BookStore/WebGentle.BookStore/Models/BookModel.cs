@@ -16,6 +16,7 @@ namespace WebGentle.BookStore.Models
         public string Author { get; set; }
         public string Description { get; set; }
         public string Category { get; set; }
+        [Required]
         public string Language { get; set; }
         [Required]
         [Display(Name = "Total Pages of the Book")]

@@ -25,11 +25,11 @@ namespace WebGentle.BookStore.Repository
              // Category = model.Category,
                 CreatedOn=DateTime.UtcNow,
                 Title=model.Title,
-            //  Language=model.Language,
+                Language=model.Language,
                 TotalPages = model.TotalPages.HasValue?model.TotalPages.Value:0,
                 UpdatedOn=DateTime.UtcNow
                 
-            };
+            }; 
             await _context.Books.AddAsync(newBook);
             await _context.SaveChangesAsync();
             return newBook.Id;
