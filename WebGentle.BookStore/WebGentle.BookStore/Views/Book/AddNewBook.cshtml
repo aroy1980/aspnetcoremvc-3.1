@@ -1,4 +1,5 @@
-﻿@{
+﻿@using WebGentle.BookStore.Enums
+@{
     ViewData["Title"] = "AddNewBook";
 }
 @model BookModel
@@ -34,14 +35,14 @@
         <span asp-validation-for="TotalPages" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Language"></label>
-        <select asp-for="Language" class="form-control" required>
-            <option value="" >Please Choose Your Language</option>
-            <option>Hindi</option>
-            <option>English</option>
-            <option>Ductch</option>
+        <label asp-for="LanguageId"></label>
+        <select asp-for="LanguageId" class="form-control" asp-items="ViewBag.Language">
+            <option value="" class="text-danger">Please Choose Your Language</option>
+            @*<option value="Hindi">Hindi One of the best language</option>
+        <option value="English">English is global language</option>
+        <option value="Dutch">Ductch is a hard language to learn</option>*@
         </select>
-        <span asp-validation-for="Language" class="text-danger"></span>
+        <span asp-validation-for="LanguageId" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Description"></label>

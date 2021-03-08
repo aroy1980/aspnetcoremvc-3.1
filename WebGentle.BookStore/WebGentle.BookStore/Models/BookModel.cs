@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using WebGentle.BookStore.Enums;
 
 namespace WebGentle.BookStore.Models
 {
@@ -16,8 +17,11 @@ namespace WebGentle.BookStore.Models
         public string Author { get; set; }
         public string Description { get; set; }
         public string Category { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Please Select a Language.")]
+        public int LanguageId { get; set; }
         public string Language { get; set; }
+        //[Required(ErrorMessage = "Please Select a Language.")]
+        //public LanguageEnum LanguageEnum { get; set; }
         [Required]
         [Display(Name = "Total Pages of the Book")]
         public int? TotalPages { get; set; }

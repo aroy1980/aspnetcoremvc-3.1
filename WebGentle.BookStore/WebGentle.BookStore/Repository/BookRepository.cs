@@ -25,7 +25,8 @@ namespace WebGentle.BookStore.Repository
              // Category = model.Category,
                 CreatedOn=DateTime.UtcNow,
                 Title=model.Title,
-                Language=model.Language,
+                LanguageId=model.LanguageId,
+
                 TotalPages = model.TotalPages.HasValue?model.TotalPages.Value:0,
                 UpdatedOn=DateTime.UtcNow
                 
@@ -51,7 +52,8 @@ namespace WebGentle.BookStore.Repository
                         Id=book.Id,
                         Description=book.Description,
                         Title=book.Title,
-                        Language=book.Language,
+                        LanguageId=book.LanguageId,
+                   //     Language = book.Language.Name,
                         TotalPages=book.TotalPages,
 
                     });
@@ -63,42 +65,40 @@ namespace WebGentle.BookStore.Repository
         }
         public async Task<BookModel> GetBookByID(int id)
         {
-            var book = await _context.Books.FindAsync(id);
-            if(book!=null)
+            return await _context.Books.Where(x => x.Id == id).Select(book => new BookModel()
             {
-                var bookDetails = new BookModel()
-                {
-                    Author = book.Author,
-                    Category = book.Category,
-                    Id = book.Id,
-                    Description = book.Description,
-                    Title = book.Title,
-                    Language = book.Language,
-                    TotalPages = book.TotalPages,
-                };
-                return bookDetails;
+                Author = book.Author,
+                Category = book.Category,
+                Id = book.Id,
+                Description = book.Description,
+                Title = book.Title,
+                LanguageId = book.LanguageId,
+                Language = book.Language.Name,
+                TotalPages = book.TotalPages,
+            }).FirstOrDefaultAsync();
+          
             }
             // var book= _context.Books.Where(x => x.Id == id).FirstOrDefault();
-            return null;
+          
         }
 
-        public List<BookModel> SearchBook(string title,string authorName)
-        {
-            return DataSource().Where(x => x.Title.Contains(title) || x.Author.Contains(authorName)).ToList();
-        }
-        private List<BookModel> DataSource()
-        {
-            return new List<BookModel>()
-            {
-                 new BookModel() { Id = 1, Title = "MVC", Author = "Nitish", Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=458 },
-                 new BookModel() { Id = 2, Title = "C#", Author = "Monika" , Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=4589},
-                 new BookModel() { Id = 3, Title = "Java", Author = "Tajul" , Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=847},
-                 new BookModel() { Id = 4, Title = "Php", Author = "Jashim" , Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=544},
-                 new BookModel() { Id = 5, Title = "Core", Author = "Nitish" , Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=966},
-                  new BookModel() { Id = 6, Title = "Azure DevOps", Author = "Avijit" , Description="This is a Very good book of Azure DevOps", Category="Programming",Language="English",TotalPages=1025},
-            };
+        //public List<BookModel> SearchBook(string title,string authorName)
+        //{
+        //    return null;// DataSource().Where(x => x.Title.Contains(title) || x.Author.Contains(authorName)).ToList();
+        //}
+        //private List<BookModel> DataSource()
+        //{
+        //    return new List<BookModel>()
+        //    {
+        //         //new BookModel() { Id = 1, Title = "MVC", Author = "Nitish", Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=458 },
+        //         //new BookModel() { Id = 2, Title = "C#", Author = "Monika" , Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=4589},
+        //         //new BookModel() { Id = 3, Title = "Java", Author = "Tajul" , Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=847},
+        //         //new BookModel() { Id = 4, Title = "Php", Author = "Jashim" , Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=544},
+        //         //new BookModel() { Id = 5, Title = "Core", Author = "Nitish" , Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=966},
+        //         // new BookModel() { Id = 6, Title = "Azure DevOps", Author = "Avijit" , Description="This is a Very good book of Azure DevOps", Category="Programming",Language="English",TotalPages=1025},
+        //    };
 
        
         }
-    }
-}
+    
+
