@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using WebGentle.BookStore.Enums;
+using WebGentle.BookStore.Helpers;
 
 namespace WebGentle.BookStore.Models
 {
@@ -12,6 +13,7 @@ namespace WebGentle.BookStore.Models
         public int Id { get; set; }
         [Required(ErrorMessage ="Please Enter Title.")]
         [StringLength(100, MinimumLength =5)]
+      //  [MyCustomValidation(Text ="Azure",ErrorMessage ="Need Matching Word")]
         public string Title { get; set; }
         [Required]
         public string Author { get; set; }
