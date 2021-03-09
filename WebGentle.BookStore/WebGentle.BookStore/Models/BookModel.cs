@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -27,5 +28,8 @@ namespace WebGentle.BookStore.Models
         [Required]
         [Display(Name = "Total Pages of the Book")]
         public int? TotalPages { get; set; }
+        [Required]
+        [Display(Name ="Please select a cover photo")]
+        public IFormFile CoverPhoto { get; set; }
     }
 }
