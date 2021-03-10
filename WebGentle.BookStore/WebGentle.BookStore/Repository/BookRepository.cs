@@ -28,9 +28,22 @@ namespace WebGentle.BookStore.Repository
                 LanguageId=model.LanguageId,
 
                 TotalPages = model.TotalPages.HasValue?model.TotalPages.Value:0,
-                UpdatedOn=DateTime.UtcNow
+                UpdatedOn=DateTime.UtcNow,
+                CoverImagePath = model.CoverImagePath,
+                BookPdfUrl = model.BookPdfUrl
                 
-            }; 
+            };
+            newBook.BookGallery = new List<BookGallery>();
+            foreach (var file in model.Gallery)
+            {
+
+                newBook.BookGallery.Add(new BookGallery()
+                {
+                    Name=file.Name,
+                    URL = file.URL
+                });
+            }
+
             await _context.Books.AddAsync(newBook);
             await _context.SaveChangesAsync();
             return newBook.Id;
@@ -55,6 +68,7 @@ namespace WebGentle.BookStore.Repository
                         LanguageId=book.LanguageId,
                    //     Language = book.Language.Name,
                         TotalPages=book.TotalPages,
+                        CoverImagePath = book.CoverImagePath,
 
                     });
 
@@ -75,6 +89,14 @@ namespace WebGentle.BookStore.Repository
                 LanguageId = book.LanguageId,
                 Language = book.Language.Name,
                 TotalPages = book.TotalPages,
+                CoverImagePath = book.CoverImagePath,
+                Gallery = book.BookGallery.Select(g=> new GalleryModel() 
+                {
+                    Id=g.Id,
+                    Name=g.Name,
+                    URL=g.URL
+                }).ToList(),
+                BookPdfUrl = book.BookPdfUrl
             }).FirstOrDefaultAsync();
           
             }

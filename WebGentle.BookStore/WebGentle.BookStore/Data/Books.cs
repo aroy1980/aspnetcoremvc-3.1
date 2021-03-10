@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,5 +19,8 @@ namespace WebGentle.BookStore.Data
         public DateTime? UpdatedOn { get; set; }
 
         public Language Language { get; set; }
+        public string  CoverImagePath { get; set; }
+        public ICollection<BookGallery> BookGallery{ get; set; }
+        public string  BookPdfUrl { get; set; }
     }
 }

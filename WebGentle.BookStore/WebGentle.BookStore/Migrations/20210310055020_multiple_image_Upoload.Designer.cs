@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebGentle.BookStore.Data;
 
 namespace WebGentle.BookStore.Migrations
 {
     [DbContext(typeof(BookStoreContext))]
-    partial class BookStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20210310055020_multiple_image_Upoload")]
+    partial class multiple_image_Upoload
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,6 +31,9 @@ namespace WebGentle.BookStore.Migrations
                     b.Property<int>("BookId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("BooksId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -37,7 +42,7 @@ namespace WebGentle.BookStore.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BookId");
+                    b.HasIndex("BooksId");
 
                     b.ToTable("BookGallery");
                 });
@@ -50,9 +55,6 @@ namespace WebGentle.BookStore.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Author")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BookPdfUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Category")
@@ -106,13 +108,9 @@ namespace WebGentle.BookStore.Migrations
 
             modelBuilder.Entity("WebGentle.BookStore.Data.BookGallery", b =>
                 {
-                    b.HasOne("WebGentle.BookStore.Data.Books", "Book")
+                    b.HasOne("WebGentle.BookStore.Data.Books", null)
                         .WithMany("BookGallery")
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
+                        .HasForeignKey("BooksId");
                 });
 
             modelBuilder.Entity("WebGentle.BookStore.Data.Books", b =>

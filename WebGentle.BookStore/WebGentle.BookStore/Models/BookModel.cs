@@ -31,5 +31,15 @@ namespace WebGentle.BookStore.Models
         [Required]
         [Display(Name ="Please select a cover photo")]
         public IFormFile CoverPhoto { get; set; }
+        public string CoverImagePath { get; set; }
+        [Required]
+        [Display(Name = "Choose the gallery Images ")]
+        public IFormFileCollection GalleryFile { get; set; }
+        public List<GalleryModel> Gallery { get; set; }
+
+        [Required]
+        [Display(Name = "Upload Your Book")]
+        public IFormFile BookPdf { get; set; }
+        public string BookPdfUrl { get; set; }
     }
 }
