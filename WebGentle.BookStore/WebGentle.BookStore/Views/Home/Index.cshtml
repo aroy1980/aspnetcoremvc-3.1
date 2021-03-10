@@ -19,46 +19,13 @@
         <big>Top Books</big>
         <div class="row">
             <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <img src="~/images/Noimage.png" />
-                    <div class="card-body">
-                        <p class="card-text">This Section will dispaly the Card Text</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a href="#" class="btn btn-sm btn-outline-secondary">View Details</a>
-                            </div>
-                            <small class="text-muted">Author Name</small>
-                        </div>
-                    </div>
-                </div>
+             <partial name="_BookThumbnail" model="new BookModel()"/>
             </div>
             <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <img src="~/images/Noimage.png" />
-                    <div class="card-body">
-                        <p class="card-text">This Section will dispaly the Card Text</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a href="#" class="btn btn-sm btn-outline-secondary">View Details</a>
-                            </div>
-                            <small class="text-muted">Author Name</small>
-                        </div>
-                    </div>
-                </div>
+                <partial name="_BookThumbnail" model="new BookModel()" />
             </div> 
             <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <img src="~/images/Noimage.png" />
-                    <div class="card-body">
-                        <p class="card-text">This Section will dispaly the Card Text</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a href="#" class="btn btn-sm btn-outline-secondary">View Details</a>
-                            </div>
-                            <small class="text-muted">Author Name</small>
-                        </div>
-                    </div>
-                </div>
+                <partial name="_BookThumbnail" model="new BookModel()" />
             </div>
         </div>
     </div>
