@@ -3,11 +3,12 @@
     <img src="@(string.IsNullOrEmpty(Model.CoverImagePath) ? "/images/Noimage.png" :Model.CoverImagePath)" class="img-thumbnail" />
 
     <div class="card-body">
-        <h3 class="card-title"> @(string.IsNullOrEmpty(Model.Title)? "Title is not Available": Model.Title)</h3>
+        <h3 class="card-title">"@(string.IsNullOrEmpty(Model.Title)? "Title is not Available": Model.Title)"</h3>
         <p class="card-text">@(string.IsNullOrEmpty(@Model.Description)? "Description is not Available" : Model.Description)</p>
         <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
-                <a asp-controller="Book" asp-action="GetBook" asp-route-id="@Model.Id" class="btn btn-sm btn-outline-secondary">View Details</a>
+               @* <a asp-controller="Book" asp-action="GetBook" asp-route-id=@(string.IsNullOrEmpty(Model.Id.ToString())? 1: Model.Id) class="btn btn-sm btn-outline-secondary">View Details</a>*@
+                <a asp-controller="Book" asp-action="GetBook" asp-route-id= "@Model.Id" class="btn btn-sm btn-outline-secondary">View Details</a>
             </div>
             <small class="text-muted">@(string.IsNullOrEmpty(Model.Author) ? "Author is not Available" : Model.Author)</small>
         </div>

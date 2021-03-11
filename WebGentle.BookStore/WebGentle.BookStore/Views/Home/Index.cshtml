@@ -19,13 +19,25 @@
         <big>Top Books</big>
         <div class="row">
             <div class="col-md-4">
-             <partial name="_BookThumbnail" model="new BookModel()"/>
+                    @* best Practice*@
+                @*<partial name="_BookThumbnail" model="new BookModel()" />*@ 
+                    @*  best practice*@
+                @Html.Partial("_BookThumbnail", new BookModel())
             </div>
             <div class="col-md-4">
-                <partial name="_BookThumbnail" model="new BookModel()" />
-            </div> 
+                @*<partial name="_BookThumbnail" model="new BookModel()" />*@
+                @await Html.PartialAsync("_BookThumbnail", new BookModel())
+            </div>
             <div class="col-md-4">
-                <partial name="_BookThumbnail" model="new BookModel()" />
+                @*<partial name="_BookThumbnail" model="new BookModel()" />*@
+                @{Html.RenderPartial("_BookThumbnail", new BookModel());}
+
+            </div>
+            <div class="col-md-4">
+
+             @* <partial name="_BookThumbnail" model="new BookModel()" />*@
+                @{Html.RenderPartialAsync("_BookThumbnail", new BookModel()); }
+
             </div>
         </div>
     </div>
