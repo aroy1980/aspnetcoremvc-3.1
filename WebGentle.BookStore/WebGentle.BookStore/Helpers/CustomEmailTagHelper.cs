@@ -14,7 +14,7 @@ namespace WebGentle.BookStore.Helpers
             output.TagName = "a";
             output.Attributes.SetAttribute("href", $"mailto:{MyEmail}");
             output.Attributes.Add("id", "emailId");
-            output.Content.SetContent("Send Email");
+            output.Content.SetContent("Send Feedback");
         }
     }
 }

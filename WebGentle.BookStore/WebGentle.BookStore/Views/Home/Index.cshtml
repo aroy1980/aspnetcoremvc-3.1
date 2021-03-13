@@ -17,29 +17,10 @@
     <div class="container">
         @*<h3>Top Books</h3>*@
         <big>Top Books</big>
-        <div class="row">
-            <div class="col-md-4">
-                    @* best Practice*@
-                @*<partial name="_BookThumbnail" model="new BookModel()" />*@ 
-                    @*  best practice*@
-                @Html.Partial("_BookThumbnail", new BookModel())
-            </div>
-            <div class="col-md-4">
-                @*<partial name="_BookThumbnail" model="new BookModel()" />*@
-                @await Html.PartialAsync("_BookThumbnail", new BookModel())
-            </div>
-            <div class="col-md-4">
-                @*<partial name="_BookThumbnail" model="new BookModel()" />*@
-                @{Html.RenderPartial("_BookThumbnail", new BookModel());}
+       @* @await Component.InvokeAsync("TopBooks", new { count=1})*@
+        <vc:top-books count="2"></vc:top-books>
 
-            </div>
-            <div class="col-md-4">
-
-             @* <partial name="_BookThumbnail" model="new BookModel()" />*@
-                @{Html.RenderPartialAsync("_BookThumbnail", new BookModel()); }
-
-            </div>
-        </div>
+      
     </div>
 </div>
     
