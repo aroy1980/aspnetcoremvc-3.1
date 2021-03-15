@@ -8,7 +8,7 @@ using WebGentle.BookStore.Models;
 
 namespace WebGentle.BookStore.Repository
 {
-    public class BookRepository
+    public class BookRepository : IBookRepository
     {
         private readonly BookStoreContext _context;
 
@@ -22,16 +22,16 @@ namespace WebGentle.BookStore.Repository
             {
                 Author = model.Author,
                 Description = model.Description,
-             // Category = model.Category,
-                CreatedOn=DateTime.UtcNow,
-                Title=model.Title,
-                LanguageId=model.LanguageId,
+                // Category = model.Category,
+                CreatedOn = DateTime.UtcNow,
+                Title = model.Title,
+                LanguageId = model.LanguageId,
 
-                TotalPages = model.TotalPages.HasValue?model.TotalPages.Value:0,
-                UpdatedOn=DateTime.UtcNow,
+                TotalPages = model.TotalPages.HasValue ? model.TotalPages.Value : 0,
+                UpdatedOn = DateTime.UtcNow,
                 CoverImagePath = model.CoverImagePath,
                 BookPdfUrl = model.BookPdfUrl
-                
+
             };
             newBook.BookGallery = new List<BookGallery>();
             foreach (var file in model.Gallery)
@@ -39,7 +39,7 @@ namespace WebGentle.BookStore.Repository
 
                 newBook.BookGallery.Add(new BookGallery()
                 {
-                    Name=file.Name,
+                    Name = file.Name,
                     URL = file.URL
                 });
             }
@@ -47,13 +47,13 @@ namespace WebGentle.BookStore.Repository
             await _context.Books.AddAsync(newBook);
             await _context.SaveChangesAsync();
             return newBook.Id;
-            
+
         }
         public async Task<List<BookModel>> GetAllBooks()
         {
             var books = new List<BookModel>();
-            
-            var allBooks =await _context.Books.ToListAsync();
+
+            var allBooks = await _context.Books.ToListAsync();
             if (allBooks.Any() == true)
             {
                 foreach (var book in allBooks)
@@ -62,12 +62,12 @@ namespace WebGentle.BookStore.Repository
                     {
                         Author = book.Author,
                         Category = book.Category,
-                        Id=book.Id,
-                        Description=book.Description,
-                        Title=book.Title,
-                        LanguageId=book.LanguageId,
-                   //     Language = book.Language.Name,
-                        TotalPages=book.TotalPages,
+                        Id = book.Id,
+                        Description = book.Description,
+                        Title = book.Title,
+                        LanguageId = book.LanguageId,
+                        //     Language = book.Language.Name,
+                        TotalPages = book.TotalPages,
                         CoverImagePath = book.CoverImagePath,
 
                     });
@@ -93,7 +93,7 @@ namespace WebGentle.BookStore.Repository
                     TotalPages = book.TotalPages,
                     CoverImagePath = book.CoverImagePath,
                 }).Take(count).ToListAsync();
-            
+
             //var books = new List<BookModel>();
 
             //var allBooks = await _context.Books.ToListAsync();
@@ -133,37 +133,37 @@ namespace WebGentle.BookStore.Repository
                 Language = book.Language.Name,
                 TotalPages = book.TotalPages,
                 CoverImagePath = book.CoverImagePath,
-                Gallery = book.BookGallery.Select(g=> new GalleryModel() 
+                Gallery = book.BookGallery.Select(g => new GalleryModel()
                 {
-                    Id=g.Id,
-                    Name=g.Name,
-                    URL=g.URL
+                    Id = g.Id,
+                    Name = g.Name,
+                    URL = g.URL
                 }).ToList(),
                 BookPdfUrl = book.BookPdfUrl
             }).FirstOrDefaultAsync();
-          
-            }
-            // var book= _context.Books.Where(x => x.Id == id).FirstOrDefault();
-          
-        }
 
-        //public List<BookModel> SearchBook(string title,string authorName)
-        //{
-        //    return null;// DataSource().Where(x => x.Title.Contains(title) || x.Author.Contains(authorName)).ToList();
-        //}
-        //private List<BookModel> DataSource()
-        //{
-        //    return new List<BookModel>()
-        //    {
-        //         //new BookModel() { Id = 1, Title = "MVC", Author = "Nitish", Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=458 },
-        //         //new BookModel() { Id = 2, Title = "C#", Author = "Monika" , Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=4589},
-        //         //new BookModel() { Id = 3, Title = "Java", Author = "Tajul" , Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=847},
-        //         //new BookModel() { Id = 4, Title = "Php", Author = "Jashim" , Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=544},
-        //         //new BookModel() { Id = 5, Title = "Core", Author = "Nitish" , Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=966},
-        //         // new BookModel() { Id = 6, Title = "Azure DevOps", Author = "Avijit" , Description="This is a Very good book of Azure DevOps", Category="Programming",Language="English",TotalPages=1025},
-        //    };
-
-       
         }
+        // var book= _context.Books.Where(x => x.Id == id).FirstOrDefault();
+
+    }
+
+    //public List<BookModel> SearchBook(string title,string authorName)
+    //{
+    //    return null;// DataSource().Where(x => x.Title.Contains(title) || x.Author.Contains(authorName)).ToList();
+    //}
+    //private List<BookModel> DataSource()
+    //{
+    //    return new List<BookModel>()
+    //    {
+    //         //new BookModel() { Id = 1, Title = "MVC", Author = "Nitish", Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=458 },
+    //         //new BookModel() { Id = 2, Title = "C#", Author = "Monika" , Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=4589},
+    //         //new BookModel() { Id = 3, Title = "Java", Author = "Tajul" , Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=847},
+    //         //new BookModel() { Id = 4, Title = "Php", Author = "Jashim" , Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=544},
+    //         //new BookModel() { Id = 5, Title = "Core", Author = "Nitish" , Description="This is a Very good book of MVC", Category="Programming",Language="English",TotalPages=966},
+    //         // new BookModel() { Id = 6, Title = "Azure DevOps", Author = "Avijit" , Description="This is a Very good book of Azure DevOps", Category="Programming",Language="English",TotalPages=1025},
+    //    };
+
+
+}
     
 

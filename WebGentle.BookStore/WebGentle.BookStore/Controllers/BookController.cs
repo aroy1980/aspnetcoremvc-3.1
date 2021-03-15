@@ -30,6 +30,7 @@ namespace WebGentle.BookStore.Controllers
             var data = await _bookRepository.GetAllBooks();
             return View(data);
         }
+      //  [HttpGet("Book-Details/{id:int:min(0)}", Name ="BookDetailsRoute")]
         public async Task<ViewResult> GetBook(int id)
         {
             var data = await _bookRepository.GetBookByID(id);

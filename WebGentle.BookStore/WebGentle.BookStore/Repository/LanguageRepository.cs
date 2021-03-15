@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebGentle.BookStore.Repository
 {
-    public class LanguageRepository
+    public class LanguageRepository : ILanguageRepository
     {
         private BookStoreContext _context;
 
@@ -18,14 +18,14 @@ namespace WebGentle.BookStore.Repository
         }
         public async Task<List<LanguageModel>> GetAllLanguage()
         {
-            return  await _context.Language.Select(x => new LanguageModel()
+            return await _context.Language.Select(x => new LanguageModel()
             {
-                Id=x.Id,
-                Name=x.Name,
-                Description=x.Description
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Description
 
             }).ToListAsync();
-           
+
         }
     }
 }

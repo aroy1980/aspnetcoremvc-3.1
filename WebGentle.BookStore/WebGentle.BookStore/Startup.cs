@@ -33,8 +33,8 @@ namespace WebGentle.BookStore
             //});
 #endif
             //services.AddScoped<BookRepository, BookRepository>();
-            services.AddScoped<BookRepository, BookRepository>();
-            services.AddScoped<LanguageRepository, LanguageRepository>();
+            services.AddScoped<IBookRepository,BookRepository>();
+            services.AddScoped<ILanguageRepository, LanguageRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,9 +59,25 @@ namespace WebGentle.BookStore
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
+                //Example of Controller attrivute Routing
+                    // endpoints.MapControllers();
+                //Example of Controller attrivute Routing
+
                 //endpoints.MapControllerRoute(
-                //    name: "Default", pattern: "{controller = Home}/{ action = Index}/{ id ?}");
+                //    name: "Default", 
+                //    pattern: "{controller = Home}/{ action = Index}/{ id ?}");
                 endpoints.MapDefaultControllerRoute();
+
+
+            //Example of Conventional Routing
+                //endpoints.MapControllerRoute(
+                //name: "AboutUs",
+                //pattern: "About-Us",
+                //defaults: new { Controller = "Home", action = "About" });
+             //Conventional Routing
+
+
+
                 //endpoints.MapGet("/", async context =>
                 //{
                 //    await context.Response.WriteAsync("Hello World!");
