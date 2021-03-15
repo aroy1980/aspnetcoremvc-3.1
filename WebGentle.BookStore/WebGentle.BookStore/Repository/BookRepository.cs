@@ -143,6 +143,11 @@ namespace WebGentle.BookStore.Repository
             }).FirstOrDefaultAsync();
 
         }
+
+        public string GetAppName()
+        {
+            return "Book Store Application";
+        }
         // var book= _context.Books.Where(x => x.Id == id).FirstOrDefault();
 
     }

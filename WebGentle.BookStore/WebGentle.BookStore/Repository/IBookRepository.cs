@@ -10,5 +10,6 @@ namespace WebGentle.BookStore.Repository
         Task<List<BookModel>> GetAllBooks();
         Task<BookModel> GetBookByID(int id);
         Task<List<BookModel>> GetTopBooksAsync(int count);
+        public string GetAppName();
     }
 }

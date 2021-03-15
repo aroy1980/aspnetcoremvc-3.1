@@ -14,11 +14,11 @@ namespace WebGentle.BookStore.Controllers
 {
     public class BookController : Controller
     {
-        private readonly  BookRepository _bookRepository;
-        private readonly LanguageRepository _languageRepository;
+        private readonly  IBookRepository _bookRepository;
+        private readonly ILanguageRepository _languageRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public BookController(BookRepository bookRepository,LanguageRepository languageRepository, IWebHostEnvironment webHostEnvironment)
+        public BookController(IBookRepository bookRepository,ILanguageRepository languageRepository, IWebHostEnvironment webHostEnvironment)
         {
             _bookRepository = bookRepository;
             _languageRepository = languageRepository;
@@ -42,11 +42,11 @@ namespace WebGentle.BookStore.Controllers
         //    var data = _bookRepository.SearchBook(title, authorName);
         //    return View();
         //}
-        public async Task<ViewResult> AddNewBook(bool isSuccess = false, int bookId=0)
+        public async Task<ViewResult> AddNewBook(bool isSuccess = false, int bookId = 0)
         {
-            var book = new BookModel()
-            { //Language = "Hindi" 
-            };
+            var book = new BookModel();
+            //  { //Language = "Hindi" 
+            //  };
             //ViewBag.Language = GetLanuage().Select(x => new SelectListItem()
             //{
             //    Text = x.Text,
@@ -67,7 +67,7 @@ namespace WebGentle.BookStore.Controllers
 
             //};
             //ViewBag.Language = new SelectList(GetLanuage(), "Id", "Text", 2);
-            ViewBag.language = new SelectList( await _languageRepository.GetAllLanguage(),"Id","Name");
+            //ViewBag.language = new SelectList( await _languageRepository.GetAllLanguage(),"Id","Name");
             ViewBag.IsSuccess = isSuccess;
             ViewBag.BookId = bookId;
             return View(book);
@@ -109,7 +109,7 @@ namespace WebGentle.BookStore.Controllers
                 }
               
             
-            ViewBag.language = new SelectList(await _languageRepository.GetAllLanguage(), "Id", "Name");
+           // ViewBag.language = new SelectList(await _languageRepository.GetAllLanguage(), "Id", "Name");
 
             //ViewBag.Language = GetLanuage().Select(x => new SelectListItem()
             //{
