@@ -1,4 +1,6 @@
-﻿@inject WebGentle.BookStore.Repository.IBookRepository _bookRepository  
+﻿@inject WebGentle.BookStore.Repository.IBookRepository _bookRepository
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration _configuration
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -40,4 +42,11 @@
             </div>
         </div>
     </nav>
+    @if (_configuration.GetValue<bool>("NewBookAlert:IsNewBook"))
+    {
+        <div class=" alert alert-info" role="alert">
+            @(_configuration.GetValue<string>("NewBookAlert:BookName"))
+        </div>
+    }
+
 </header>
