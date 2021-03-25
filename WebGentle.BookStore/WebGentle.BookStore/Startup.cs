@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,7 +31,8 @@ namespace WebGentle.BookStore
         {
             services.AddDbContext<BookStoreContext>(
                 options=> options.UseSqlServer(_configuration.GetConnectionString("MainConnection")));
-           
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                 .AddEntityFrameworkStores<BookStoreContext>();
             services.AddMvc();
 #if DEBUG
             services.AddRazorPages().AddRazorRuntimeCompilation();
@@ -42,6 +44,7 @@ namespace WebGentle.BookStore
             //services.AddScoped<BookRepository, BookRepository>();
             services.AddScoped<IBookRepository,BookRepository>();
             services.AddScoped<ILanguageRepository, LanguageRepository>();
+            services.AddScoped<IAccountRepository, AccountRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +67,7 @@ namespace WebGentle.BookStore
             });
                
             app.UseRouting();
+            app.UseAuthentication();
             app.UseEndpoints(endpoints =>
             {
                 //Example of Controller attrivute Routing
