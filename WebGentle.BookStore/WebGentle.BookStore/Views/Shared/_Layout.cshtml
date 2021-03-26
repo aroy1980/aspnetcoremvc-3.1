@@ -13,12 +13,19 @@
     <link href="~/css/site.css" rel="stylesheet" />
     
 </head>
-<body >
-    <partial name="_Header"/>
+<body>
+    @{
+        var cName = ViewContext.RouteData.Values["controller"].ToString();
+        if (cName != "Account")
+        {
+            <partial name="_Header" />
+        }
+    }
+
     <main role="main">
         @RenderBody()
     </main>
-    <partial name="_Footer"/>
+    <partial name="_Footer" />
     <environment include="Development">
         <script src="~/lib/jquery/jquery.js"></script>
         <script src="~/jquery-validate/jquery.validate.js"></script>

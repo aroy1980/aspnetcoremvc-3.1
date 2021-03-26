@@ -13,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using WebGentle.BookStore.Data;
+using WebGentle.BookStore.Models;
 using WebGentle.BookStore.Repository;
 
 namespace WebGentle.BookStore
@@ -31,8 +32,16 @@ namespace WebGentle.BookStore
         {
             services.AddDbContext<BookStoreContext>(
                 options=> options.UseSqlServer(_configuration.GetConnectionString("MainConnection")));
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                  .AddEntityFrameworkStores<BookStoreContext>();
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequiredLength = 4;
+                options.Password.RequiredUniqueChars = 0;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false; 
+                options.Password.RequireLowercase = false;
+            });
             services.AddMvc();
 #if DEBUG
             services.AddRazorPages().AddRazorRuntimeCompilation();
