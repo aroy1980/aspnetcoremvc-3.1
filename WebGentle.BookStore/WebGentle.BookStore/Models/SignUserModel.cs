@@ -24,13 +24,14 @@ namespace WebGentle.BookStore.Models
         [EmailAddress(ErrorMessage ="Enter a valid E-mail")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Please Enter Your Password")]
-        [Compare("ConfirmPassword", ErrorMessage ="Password Does Not Match")]
+        [Compare("ConfirmPassword", ErrorMessage = "Password Does Not Match")]
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
         [Required(ErrorMessage = "Please Confirm Your Password")]
         [Display(Name = "Confirm Password")]
         [DataType(DataType.Password)]
+       
         public string ConfirmPassword { get; set; }
     }
 }

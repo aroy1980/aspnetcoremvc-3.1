@@ -8,5 +8,6 @@ namespace WebGentle.BookStore.Repository
     {
         Task<IdentityResult> CreateUserAsync(SignUserModel userModel);
         Task<SignInResult> PasswordSignIn(SignInModel signInModel);
+        Task SignOutAsync();
     }
 }

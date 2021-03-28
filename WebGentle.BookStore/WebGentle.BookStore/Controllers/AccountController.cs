@@ -62,6 +62,10 @@ namespace WebGentle.BookStore.Controllers
             return View(signInModel);
         }
 
-
+        public async Task<IActionResult> Logout()
+        {
+           await _accountRepository.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
