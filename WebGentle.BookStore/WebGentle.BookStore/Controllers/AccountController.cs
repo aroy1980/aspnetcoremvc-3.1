@@ -41,5 +41,27 @@ namespace WebGentle.BookStore.Controllers
             }
             return View();
         }
+        [Route("SignIn")]
+        public IActionResult SignIn()
+        {
+            return View();
+        }
+        [Route("SignIn")]
+        [HttpPost]
+        public async Task<IActionResult> SignIn(SignInModel signInModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var result=  await _accountRepository.PasswordSignIn(signInModel);
+                if(result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                ModelState.AddModelError("", "Invalid Credential");
+            }
+            return View(signInModel);
+        }
+
+
     }
 }
