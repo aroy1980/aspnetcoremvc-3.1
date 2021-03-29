@@ -14,14 +14,14 @@
     
 </head>
 <body>
-    @{
+    @*@{
         var cName = ViewContext.RouteData.Values["controller"].ToString();
         if (cName != "Account")
         {
-            <partial name="_Header" />
-        }
-    }
 
+        }
+    }*@
+    <partial name="_Header" />
     <main role="main">
         @RenderBody()
     </main>

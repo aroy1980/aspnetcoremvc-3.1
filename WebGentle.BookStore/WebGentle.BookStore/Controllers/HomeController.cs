@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebGentle.BookStore.Service;
 
 namespace WebGentle.BookStore.Controllers
 {
@@ -11,13 +12,22 @@ namespace WebGentle.BookStore.Controllers
     {
        
         private readonly IConfiguration _configuration;
+        private readonly IUserService _userService;
 
-        public HomeController(IConfiguration configuration)
+        public HomeController(IConfiguration configuration, IUserService userService)
         {
             _configuration = configuration;
+            _userService = userService;
         }
         public ViewResult Index()
         {
+            // Get logged UserID in any Controller Using HTTPContextAccessor Class//
+            var isLogged = _userService.IsLogged();
+            if (isLogged)
+            {
+                var userID = _userService.GetUserID();
+            }
+           
             //var result = _configuration.GetValue<bool>("DisplayNewBookAlert");
           //  var result = _configuration["AppName"];
             return View();

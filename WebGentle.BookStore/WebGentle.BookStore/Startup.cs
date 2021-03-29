@@ -13,8 +13,10 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using WebGentle.BookStore.Data;
+using WebGentle.BookStore.Helpers;
 using WebGentle.BookStore.Models;
 using WebGentle.BookStore.Repository;
+using WebGentle.BookStore.Service;
 
 namespace WebGentle.BookStore
 {
@@ -42,6 +44,10 @@ namespace WebGentle.BookStore
                 options.Password.RequireUppercase = false; 
                 options.Password.RequireLowercase = false;
             });
+            services.ConfigureApplicationCookie(config =>
+            {
+                config.LoginPath = _configuration["ApplicationLoginPath:LoginPath"];
+            });
             services.AddMvc();
 #if DEBUG
             services.AddRazorPages().AddRazorRuntimeCompilation();
@@ -54,6 +60,8 @@ namespace WebGentle.BookStore
             services.AddScoped<IBookRepository,BookRepository>();
             services.AddScoped<ILanguageRepository, LanguageRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ApplicationUserClaimsPrincipalFactory>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,6 +85,7 @@ namespace WebGentle.BookStore
                
             app.UseRouting();
             app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 //Example of Controller attrivute Routing
