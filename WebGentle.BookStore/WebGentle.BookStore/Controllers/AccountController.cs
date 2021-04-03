@@ -81,11 +81,21 @@ namespace WebGentle.BookStore.Controllers
         }
         [Route("ChangePassword")]
         [HttpPost]
-        public IActionResult ChangePassword(ChangePasswordModel changePassword)
+        public async  Task<IActionResult> ChangePassword(ChangePasswordModel changePassword)
         {
             if (ModelState.IsValid)
             {
-
+                var result = await _accountRepository.ChangePasswordAsync(changePassword);
+                if (result.Succeeded)
+                {
+                    ViewBag.IsSuccess = true;
+                    ModelState.Clear();
+                    return View();
+                }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
             }
             return View(changePassword);
         }
